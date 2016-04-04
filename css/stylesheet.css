@@ -1,0 +1,12 @@
+.header { margin: 25px 0; }
+
+table { table-layout:fixed; }
+table th > div { cursor: pointer; webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+table td { position: relative; }
+table td:after { position: absolute; font-size: 50%; right: 3px; bottom: 0; }
+table td.friday { background: #3fbfbb; }
+table td.halloween { background: #ef5e5e; }
+table td.halloween:after { content: "published on Halloween"; }
+table td.friday:after { content: "published on the last Friday of the month"; }
+
+.table-content-wrapper { height: calc(100% - 230px); overflow-y:auto; }

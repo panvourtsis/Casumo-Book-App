@@ -1,0 +1,61 @@
+<html ng-app="booksApp">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/stylesheet.css" rel="stylesheet" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+</head>
+<body>
+    <div class="header container-fluid">
+        <img src="assets/casumo_logo.png" class="img-responsive center-block" />
+    </div>
+    <div ng-controller="booksController" class="container-fluid">
+        <div class="table-responsive">
+            <table class="table" style="table-layout:fixed">
+                <thead>
+                    <tr>
+                        <th>
+                            <div ng-click="order('name')" class="tablesorter-header-inner">Name <i class="tablesorter-icon glyphicon" ng-show="predicate === 'name'" ng-class="{true: 'glyphicon-chevron-up', false: 'glyphicon-chevron-down'}[reverse]"></i></div>
+                            <input ng-model="search.name" class="form-control" />
+                        </th>
+                        <th>
+                            <div ng-click="order('author')" class="tablesorter-header-inner">Author Name <i class="tablesorter-icon glyphicon" ng-show="predicate === 'author'" ng-class="{'true': 'glyphicon-chevron-up', 'false': 'glyphicon-chevron-down'}[reverse]"></i></div>
+                            <input ng-model="search.author" class="form-control" />
+                        </th>
+                        <th>
+                            <div ng-click="order('gender')" class="tablesorter-header-inner">Author Gender <i class="tablesorter-icon glyphicon" ng-show="predicate === 'gender'" ng-class="{'true': 'glyphicon-chevron-up', 'false': 'glyphicon-chevron-down'}[reverse]"></i></div>
+                            <input ng-model="search.gender" class="form-control" />
+                        </th>
+                        <th>
+                            <div ng-click="order('genre')" class="tablesorter-header-inner">Book Genre <i class="tablesorter-icon glyphicon" ng-show="predicate === 'genre'" ng-class="{'true': 'glyphicon-chevron-up', 'false': 'glyphicon-chevron-down'}[reverse]"></i></div>
+                            <input ng-model="search.genre" class="form-control" />
+                        </th>
+                        <th>
+                            <div ng-click="order('date')" class="tablesorter-header-inner">Publish Date  <i class="tablesorter-icon glyphicon" ng-show="predicate === 'date'" ng-class="{'true': 'glyphicon-chevron-up', 'false': 'glyphicon-chevron-down'}[reverse]"></i></div>
+                            <input ng-model="search.date" class="form-control" />
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+            <div style="overflow-y:auto;" class="table-content-wrapper">
+                <table class="table table-condensed" style="table-layout:fixed">
+                    <tbody>
+                        <tr ng-repeat="book in books | orderBy:predicate:reverse | filter:search:strict">
+                            <td>{{book.name}}</td>
+                            <td>{{book.author}}</td>
+                            <td>{{book.author_gender}}</td>
+                            <td ng-class="checkSpecialDay(book.genre)">{{book.genre}}</td>
+                            <td>{{book.date | date:'yyyy-MM-dd'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
