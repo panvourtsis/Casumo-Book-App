@@ -1,6 +1,6 @@
 /**
  * angularJS application that will display a million books with filters and search functionality
- * @author Panagiotis Vourtsis <panos@inspired-mobile.com>
+ * @author Panagiotis Vourtsis <vourtsis_pan@hotmail.com>
  */
 angular.module('booksApp', [])
     .controller('booksController', ['$scope', '$http', function($scope, $http) {
