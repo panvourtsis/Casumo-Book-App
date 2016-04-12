@@ -3,28 +3,29 @@
  * @author Panagiotis Vourtsis <vourtsis_pan@hotmail.com>
  */
 angular.module('booksApp', [])
-    .controller('booksController', ['$scope', '$http', function($scope, $http) {
-        $scope.books = [];
+    .controller('booksController', ['$http', function($http) {
+        var self = this;
+        self.books = [];
 
         /**
          * Call to the local file called books.json to get all the books listed there. The file is a dimmy list of books.
          */
         $http.get('books.json')
             .then(function(res){
-                $scope.books = res.data;
+                self.books = res.data;
             });
 
-        $scope.predicate = 'name';
-        $scope.reverse = false;
+        self.predicate = 'name';
+        self.reverse = false;
 
         /**
          * Function that will give the order reverse or normal of the field
          * @function
          * @name order
          */
-        $scope.order = function(predicate) {
-            $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
-            $scope.predicate = predicate;
+        self.order = function(predicate) {
+            self.reverse = (self.predicate === predicate) ? !self.reverse : false;
+            self.predicate = predicate;
         };
 
         /**
@@ -32,7 +33,7 @@ angular.module('booksApp', [])
          * @function
          * @name checkSpecialDay
          */
-        $scope.checkSpecialDay = function(genre) {
+        self.checkSpecialDay = function(genre) {
             if (genre === 'horror') {
                 return "halloween";
             } else if (genre === 'finance') {
