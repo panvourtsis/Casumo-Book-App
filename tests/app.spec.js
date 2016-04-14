@@ -35,4 +35,9 @@ describe("Controller: booksController", function() {
         backend.flush();
     });
 
+    afterEach(function() {
+        backend.verifyNoOutstandingExpectation();
+        backend.verifyNoOutstandingRequest();
+    });
+
 });
